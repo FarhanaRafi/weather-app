@@ -5,7 +5,7 @@ import {
 } from "../constants/weatherCodes";
 
 export function getWeatherIcon(code: number): string {
-  return WEATHER_ICONS[code] || "🌤️"; // fallback to partly sunny
+  return WEATHER_ICONS[code] || "🌤️"; // default to partly sunny
 }
 
 export function getWindDirection(degrees: number): string {
@@ -14,7 +14,6 @@ export function getWindDirection(degrees: number): string {
 }
 
 export function getWindCondition(speed: number) {
-  // TODO: maybe add more granular conditions later?
   if (speed < WIND_THRESHOLDS.WEAK) {
     return { text: "Schwach", color: "text-gray-500" };
   }
@@ -34,12 +33,12 @@ export function getWindCondition(speed: number) {
   return { text: "Sturm", color: "text-red-500" };
 }
 
-// Helper to format temperature nicely
+// removing decimals
 export function formatTemp(temp: number): string {
   return `${Math.round(temp)}°C`;
 }
 
-// Format date for german locale
+// date format
 export function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("de-DE", {
     weekday: "short",
