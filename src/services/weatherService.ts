@@ -9,6 +9,7 @@ export interface WeatherData {
 interface CurrentWeather {
   temperature: number;
   windSpeed: number;
+  windDirection: number;
   weatherCode: number;
   time: string;
 }
@@ -18,12 +19,15 @@ interface DailyForecast {
   maxTemp: number;
   minTemp: number;
   weatherCode: number;
+  windSpeed: number;
+  windDirection: number;
 }
 
 interface WeatherApiResponse {
   current: {
     temperature_2m: number;
     wind_speed_10m: number;
+    wind_direction_10m: number;
     weather_code: number;
     time: string;
   };
@@ -32,6 +36,8 @@ interface WeatherApiResponse {
     temperature_2m_max: number[];
     temperature_2m_min: number[];
     weather_code: number[];
+    wind_speed_10m_max: number[];
+    wind_direction_10m_dominant: number[];
   };
 }
 
@@ -45,8 +51,9 @@ export async function getWeatherData(
   const params = new URLSearchParams({
     latitude: lat.toString(),
     longitude: lon.toString(),
-    current: "temperature_2m,wind_speed_10m,weather_code",
-    daily: "temperature_2m_max,temperature_2m_min,weather_code",
+    current: "temperature_2m,wind_speed_10m,wind_direction_10m,weather_code",
+    daily:
+      "temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,wind_direction_10m_dominant",
     timezone: "Europe/Berlin",
     forecast_days: "7",
   });
@@ -61,6 +68,7 @@ export async function getWeatherData(
       current: {
         temperature: Math.round(data.current.temperature_2m),
         windSpeed: Math.round(data.current.wind_speed_10m),
+        windDirection: Math.round(data.current.wind_direction_10m),
         weatherCode: data.current.weather_code,
         time: data.current.time,
       },
@@ -69,6 +77,10 @@ export async function getWeatherData(
         maxTemp: Math.round(data.daily.temperature_2m_max[index]),
         minTemp: Math.round(data.daily.temperature_2m_min[index]),
         weatherCode: data.daily.weather_code[index],
+        windSpeed: Math.round(data.daily.wind_speed_10m_max[index]),
+        windDirection: Math.round(
+          data.daily.wind_direction_10m_dominant[index]
+        ),
       })),
     };
   } catch (error) {

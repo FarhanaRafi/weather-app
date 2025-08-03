@@ -3,6 +3,7 @@ import {
   getWeatherIcon,
   getWindCondition,
   formatTemp,
+  getWindDirection,
 } from "../utils/weatherUtils";
 
 interface CurrentWeatherProps {
@@ -41,6 +42,9 @@ export default function CurrentWeather({ weather }: CurrentWeatherProps) {
             {weather.current.windSpeed}
           </div>
           <div className="text-sm text-gray-500 mb-1">km/h</div>
+          <div className="text-xs text-gray-400">
+            {getWindDirection(weather.current.windDirection)}
+          </div>
         </div>
 
         <div className="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">

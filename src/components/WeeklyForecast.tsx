@@ -55,20 +55,16 @@ export default function WeeklyForecast({ weather }: WeeklyForecastProps) {
               </div>
 
               <div className="flex items-center gap-6">
-                {/* Wind */}
-                <div className="text-right">
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm">💨</span>
-                    <span className="font-medium text-gray-800">
-                      {day.windSpeed} km/h
-                    </span>
-                  </div>
-                  <div className="text-xs text-gray-500">
+                {/* Wind info */}
+                <div className="hidden md:flex items-center gap-2 text-sm text-gray-600">
+                  <span>💨</span>
+                  <span>{day.windSpeed} km/h</span>
+                  <span className="text-xs">
                     {getWindDirection(day.windDirection)}
-                  </div>
+                  </span>
                 </div>
 
-                {/* Temperature */}
+                {/* Temperature bar */}
                 <div className="hidden sm:block">
                   <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
