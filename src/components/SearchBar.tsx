@@ -23,15 +23,6 @@ function SearchBar({ onSearch, loading }: SearchBarProps) {
     onSearch(userInputText);
   };
 
-  const handleKeyboardInput = (keyboardEvent: React.KeyboardEvent) => {
-    console.log("key press:", keyboardEvent.key);
-
-    if (keyboardEvent.key === "Enter") {
-      console.log("form submitted");
-      handleFormSubmission();
-    }
-  };
-
   const handleInputTextChange = (
     changeEvent: React.ChangeEvent<HTMLInputElement>
   ) => {
