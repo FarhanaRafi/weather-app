@@ -3,6 +3,7 @@ import { httpClient } from "./httpClient";
 export interface WeatherData {
   location: string;
   current: CurrentWeather;
+  hourly: HourlyForecast[];
   daily: DailyForecast[];
 }
 
@@ -23,6 +24,15 @@ interface DailyForecast {
   windDirection: number;
 }
 
+interface HourlyForecast {
+  time: string;
+  temperature: number;
+  windSpeed: number;
+  windDirection: number;
+  weatherCode: number;
+  precipitation: number;
+}
+
 interface WeatherApiResponse {
   current: {
     temperature_2m: number;
@@ -30,6 +40,14 @@ interface WeatherApiResponse {
     wind_direction_10m: number;
     weather_code: number;
     time: string;
+  };
+  hourly: {
+    time: string[];
+    temperature_2m: number[];
+    wind_speed_10m: number[];
+    wind_direction_10m: number[];
+    weather_code: number[];
+    precipitation: number[];
   };
   daily: {
     time: string[];
@@ -52,6 +70,8 @@ export async function getWeatherData(
     latitude: lat.toString(),
     longitude: lon.toString(),
     current: "temperature_2m,wind_speed_10m,wind_direction_10m,weather_code",
+    hourly:
+      "temperature_2m,wind_speed_10m,wind_direction_10m,weather_code,precipitation",
     daily:
       "temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,wind_direction_10m_dominant",
     timezone: "Europe/Berlin",
@@ -63,6 +83,9 @@ export async function getWeatherData(
       `${WEATHER_BASE_URL}?${params}`
     );
 
+    // Get next 24 hours of data
+    const next24Hours = data.hourly.time.slice(0, 24);
+
     return {
       location: locationName,
       current: {
@@ -72,6 +95,14 @@ export async function getWeatherData(
         weatherCode: data.current.weather_code,
         time: data.current.time,
       },
+      hourly: next24Hours.map((time, index) => ({
+        time,
+        temperature: Math.round(data.hourly.temperature_2m[index]),
+        windSpeed: Math.round(data.hourly.wind_speed_10m[index]),
+        windDirection: Math.round(data.hourly.wind_direction_10m[index]),
+        weatherCode: data.hourly.weather_code[index],
+        precipitation: Math.round(data.hourly.precipitation[index] * 10) / 10,
+      })),
       daily: data.daily.time.map((date, index) => ({
         date,
         maxTemp: Math.round(data.daily.temperature_2m_max[index]),

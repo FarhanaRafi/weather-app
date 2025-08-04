@@ -1,5 +1,6 @@
 import type { WeatherData } from "../services/weatherService";
 import CurrentWeather from "./CurrentWeather";
+import HourlyForecast from "./HourlyForecast";
 import WeeklyForecast from "./WeeklyForecast";
 
 interface WeatherDetailsProps {
@@ -14,11 +15,12 @@ export default function WeatherDetails({ weather }: WeatherDetailsProps) {
           Wetter für {weather.location}
         </h2>
         <p className="text-blue-200">
-          Aktuelle Bedingungen und 7-Tage Vorhersage
+          Aktuelle Bedingungen, 24h und 7-Tage Vorhersage
         </p>
       </div>
 
       <CurrentWeather weather={weather} />
+      <HourlyForecast weather={weather} />
       <WeeklyForecast weather={weather} />
     </div>
   );
