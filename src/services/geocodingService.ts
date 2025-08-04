@@ -5,6 +5,7 @@ export interface LocationResult {
   country: string;
   latitude: number;
   longitude: number;
+  admin1?: string;
 }
 
 interface GeocodingApiResult {
@@ -45,9 +46,10 @@ export async function searchLocations(
 
     const locations = data.results.map((result) => ({
       name: result.name,
-      country: result.country || result.admin1 || "Unknown",
+      country: result.country || "Unknown",
       latitude: result.latitude,
       longitude: result.longitude,
+      admin1: result.admin1,
     }));
 
     console.log(`Found ${locations.length} locations for "${query}"`);

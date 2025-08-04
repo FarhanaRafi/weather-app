@@ -145,20 +145,20 @@ function WeatherApp() {
 
       <Header />
 
-      <main className="relative z-10 max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-6 lg:py-8 flex-grow">
-        <div className="text-center mb-4 sm:mb-10 lg:mb-12">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-4 tracking-tight px-2">
+      <main className="relative z-10 w-full mx-auto px-1 md:px-4 lg:px-6 xl:px-8 py-2 md:py-6 lg:py-8 flex-grow">
+        <div className="text-center mb-3 md:mb-10 lg:mb-12">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2 md:mb-4 tracking-tight px-1">
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               Wetter
             </span>
             <span className="text-white"> App</span>
           </h1>
-          <p className="text-sm sm:text-xl text-blue-100 max-w-xl lg:max-w-2xl mx-auto leading-relaxed px-2">
+          <p className="text-xs md:text-xl text-blue-100 max-w-xl lg:max-w-2xl mx-auto leading-relaxed px-1">
             Skifahren dieses Wochenende oder nicht?!
           </p>
         </div>
 
-        <div className="space-y-4 sm:space-y-8">
+        <div className="space-y-3 md:space-y-8">
           <SearchBar onSearch={handleUserSearch} loading={isCurrentlyLoading} />
 
           {hasError && (

@@ -30,7 +30,8 @@ export default function LocationList({
                   {location.name}
                 </div>
                 <div className="text-xs sm:text-sm text-gray-500 mt-1">
-                  {location.country} • {location.admin1}
+                  {location.country}
+                  {location.admin1 ? ` • ${location.admin1}` : ""}
                 </div>
               </button>
             ))}
