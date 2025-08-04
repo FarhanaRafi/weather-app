@@ -40,6 +40,13 @@ function SearchBar({ onSearch, loading }: SearchBarProps) {
     setIsInputFocused(false);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleFormSubmission();
+    }
+  };
+
   const isSearchButtonDisabled = loading || !userInputText.trim();
   console.log("Search button disabled:", isSearchButtonDisabled);
 
@@ -59,17 +66,11 @@ function SearchBar({ onSearch, loading }: SearchBarProps) {
               onChange={handleInputTextChange}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
+              onKeyDown={handleKeyDown}
               placeholder="Stadt oder Ort eingeben (z.B. Berlin, München)..."
               className="w-full pl-12 pr-6 py-4 text-lg bg-transparent border-none outline-none text-gray-800 placeholder-gray-500"
               disabled={loading}
             />
-
-            {/* Search icon - only show when input is empty */}
-            {!userInputText && (
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
-                🔍
-              </div>
-            )}
           </div>
 
           {/* Search button */}
