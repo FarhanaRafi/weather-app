@@ -139,31 +139,31 @@ function WeatherApp() {
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
+          backgroundSize: "15px 15px sm:20px sm:20px",
         }}
       ></div>
 
       <Header />
 
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
+      <main className="relative z-10 max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-6 lg:py-8 flex-grow">
+        <div className="text-center mb-4 sm:mb-10 lg:mb-12">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-4 tracking-tight px-2">
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
               Wetter
             </span>
             <span className="text-white"> App</span>
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-xl text-blue-100 max-w-xl lg:max-w-2xl mx-auto leading-relaxed px-2">
             Skifahren dieses Wochenende oder nicht?!
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-4 sm:space-y-8">
           <SearchBar onSearch={handleUserSearch} loading={isCurrentlyLoading} />
 
           {hasError && (
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="max-w-2xl mx-auto px-4">
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm sm:text-base">
                 {errorMessage}
               </div>
             </div>

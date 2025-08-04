@@ -51,14 +51,13 @@ function SearchBar({ onSearch, loading }: SearchBarProps) {
   console.log("Search button disabled:", isSearchButtonDisabled);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto px-2 sm:px-0">
       <div
-        className={`relative bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-300 ${
+        className={`relative bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300 ${
           isInputFocused ? "shadow-blue-500/25 scale-105" : "shadow-black/20"
         }`}
       >
-        <div className="flex items-center p-2">
-          {/* Input section */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center p-2 gap-2 sm:gap-0">
           <div className="flex-1 relative">
             <input
               type="text"
@@ -67,29 +66,28 @@ function SearchBar({ onSearch, loading }: SearchBarProps) {
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               onKeyDown={handleKeyDown}
-              placeholder="Stadt oder Ort eingeben (z.B. Berlin, München)..."
-              className="w-full pl-12 pr-6 py-4 text-lg bg-transparent border-none outline-none text-gray-800 placeholder-gray-500"
+              placeholder="Stadt eingeben..."
+              className="w-full pl-3 sm:pl-12 pr-4 py-3 sm:py-4 text-sm sm:text-lg bg-transparent border-none outline-none text-gray-800 placeholder-gray-500"
               disabled={loading}
             />
           </div>
 
-          {/* Search button */}
           <button
             onClick={handleFormSubmission}
             disabled={isSearchButtonDisabled}
-            className={`px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200 transform ${
+            className={`px-4 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-white transition-all duration-200 transform text-sm sm:text-base ${
               isSearchButtonDisabled
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 hover:scale-105 shadow-lg hover:shadow-blue-500/25"
             }`}
           >
             {loading ? (
-              <div className="flex items-center space-x-2">
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                <span>Wird gesucht...</span>
+              <div className="flex items-center justify-center space-x-2">
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <span>Suchen...</span>
               </div>
             ) : (
-              "Wetter suchen"
+              "Suchen"
             )}
           </button>
         </div>

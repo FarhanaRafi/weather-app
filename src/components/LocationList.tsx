@@ -11,55 +11,30 @@ export default function LocationList({
   onLocationSelect,
   loading,
 }: LocationListProps) {
-  if (locations.length === 0) return null;
-
   return (
-    <div className="max-w-2xl mx-auto animate-fadeIn">
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
-        <div className="p-6 border-b border-gray-100">
-          <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-            <span className="mr-2">📍</span>
-            Suchergebnisse
+    <div className="max-w-2xl mx-auto px-2 sm:px-4">
+      <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-xl border border-white/20">
+        <div className="p-3 sm:p-4">
+          <h3 className="text-sm sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-4">
+            Standorte gefunden:
           </h3>
-        </div>
-
-        <div className="max-h-80 overflow-y-auto">
-          {locations.map((location, index) => (
-            <button
-              key={index}
-              onClick={() => onLocationSelect(location)}
-              disabled={loading}
-              className="w-full text-left p-6 hover:bg-blue-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 disabled:opacity-50 group"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <div className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-200 text-lg">
-                    {location.name}
-                  </div>
-                  <div className="text-sm text-gray-500 mt-1 flex items-center">
-                    <span className="mr-1">🌍</span>
-                    {location.country}
-                  </div>
+          <div className="space-y-1 sm:space-y-2 max-h-48 sm:max-h-80 overflow-y-auto">
+            {locations.map((location, index) => (
+              <button
+                key={index}
+                onClick={() => onLocationSelect(location)}
+                disabled={loading}
+                className="w-full text-left p-2 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border border-transparent hover:border-blue-200"
+              >
+                <div className="font-medium text-gray-800 text-sm sm:text-base">
+                  {location.name}
                 </div>
-
-                <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                <div className="text-xs sm:text-sm text-gray-500 mt-1">
+                  {location.country} • {location.admin1}
                 </div>
-              </div>
-            </button>
-          ))}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
