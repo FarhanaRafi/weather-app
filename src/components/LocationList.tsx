@@ -6,7 +6,7 @@ interface LocationListProps {
   loading: boolean;
 }
 
-export default function LocationList({
+function LocationList({
   locations,
   onLocationSelect,
   loading,
@@ -41,3 +41,5 @@ export default function LocationList({
     </div>
   );
 }
+
+export default LocationList;

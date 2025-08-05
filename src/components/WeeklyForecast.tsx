@@ -5,7 +5,7 @@ interface WeeklyForecastProps {
   weather: WeatherData;
 }
 
-export default function WeeklyForecast({ weather }: WeeklyForecastProps) {
+function WeeklyForecast({ weather }: WeeklyForecastProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("de-DE", {
       weekday: "short",
@@ -76,3 +76,5 @@ export default function WeeklyForecast({ weather }: WeeklyForecastProps) {
     </div>
   );
 }
+
+export default WeeklyForecast;

@@ -7,7 +7,7 @@ interface WeatherDetailsProps {
   weather: WeatherData;
 }
 
-export default function WeatherDetails({ weather }: WeatherDetailsProps) {
+function WeatherDetails({ weather }: WeatherDetailsProps) {
   return (
     <div className="max-w-7xl mx-auto space-y-3 md:space-y-8 animate-slideUp">
       <div className="text-center mb-3 md:mb-8 px-1">
@@ -28,3 +28,5 @@ export default function WeatherDetails({ weather }: WeatherDetailsProps) {
     </div>
   );
 }
+
+export default WeatherDetails;

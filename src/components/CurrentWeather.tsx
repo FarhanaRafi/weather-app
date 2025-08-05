@@ -8,8 +8,7 @@ import {
 interface CurrentWeatherProps {
   weather: WeatherData;
 }
-
-export default function CurrentWeather({ weather }: CurrentWeatherProps) {
+function CurrentWeather({ weather }: CurrentWeatherProps) {
   const windCondition = getWindCondition(weather.current.windSpeed);
 
   return (
@@ -64,3 +63,5 @@ export default function CurrentWeather({ weather }: CurrentWeatherProps) {
     </div>
   );
 }
+
+export default CurrentWeather;

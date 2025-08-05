@@ -5,7 +5,7 @@ interface HourlyForecastProps {
   weather: WeatherData;
 }
 
-export default function HourlyForecast({ weather }: HourlyForecastProps) {
+function HourlyForecast({ weather }: HourlyForecastProps) {
   const formatHour = (timeString: string) => {
     return new Date(timeString).toLocaleTimeString("de-DE", {
       hour: "2-digit",
@@ -56,7 +56,9 @@ export default function HourlyForecast({ weather }: HourlyForecastProps) {
                   {formatTemp(hour.temperature)}
                 </div>
 
-                <div className="text-xs text-gray-500">💨{hour.windSpeed}</div>
+                <div className="text-xs text-gray-500">
+                  💨{hour.windSpeed} km/h
+                </div>
 
                 {hour.precipitation > 0 && (
                   <div className="text-xs text-blue-600">
@@ -71,3 +73,5 @@ export default function HourlyForecast({ weather }: HourlyForecastProps) {
     </div>
   );
 }
+
+export default HourlyForecast;
